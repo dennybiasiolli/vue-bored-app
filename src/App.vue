@@ -1,29 +1,45 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app id="inspire">
+    <v-content>
+      <v-container fluid>
+        <v-layout align-center justify-center>
+          <v-flex xs12 sm10 md8>
+            <v-tabs color="cyan" dark slider-color="yellow">
+              <v-tab v-for="t in tabs" :key="t.description" ripple :to="t.to">
+                {{ t.description }}
+              </v-tab>
+            </v-tabs>
+            <v-card flat>
+              <v-container>
+                <router-view></router-view>
+              </v-container>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+
+import Activity from '@/components/Activity.vue';
+import ActivityFilters from '@/components/ActivityFilters.vue';
+
+@Component({
+  components: {
+    Activity,
+    ActivityFilters,
+  },
+})
+export default class Home extends Vue {
+  private tabs = [{
+    description: 'activities',
+    to: '/activities',
+  }, {
+    description: 'my list',
+    to: '/my-list',
+  }];
 }
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+</script>

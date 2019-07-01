@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
 
 Vue.use(Router);
 
@@ -10,16 +9,23 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
+      redirect: '/activities',
     },
     {
-      path: '/about',
-      name: 'about',
+      path: '/activities',
+      name: 'activities',
       // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
+      // this generates a separate chunk (activities.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+      component: () => import(/* webpackChunkName: "activities" */ './views/Activities.vue'),
+    },
+    {
+      path: '/my-list',
+      name: 'my-list',
+      // route level code-splitting
+      // this generates a separate chunk (mylist.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import(/* webpackChunkName: "mylist" */ './views/MyList.vue'),
     },
   ],
 });
