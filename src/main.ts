@@ -10,5 +10,13 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
+  beforeCreate() {
+    this.$store.commit('initializeStore');
+  },
   render: (h) => h(App),
 }).$mount('#app');
+
+store.subscribe((mutation, state) => {
+  // Store the state object as a JSON string
+  localStorage.setItem('bored-app-store', JSON.stringify(state));
+});

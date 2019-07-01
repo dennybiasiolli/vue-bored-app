@@ -8,7 +8,13 @@ export default new Vuex.Store({
 
   },
   mutations: {
-
+    initializeStore(state) {
+      // Replace the state object with the stored item
+      this.replaceState(
+        Object.assign(
+          state,
+          JSON.parse(localStorage.getItem('bored-app-store') || '{}')));
+    },
   },
   actions: {
 
