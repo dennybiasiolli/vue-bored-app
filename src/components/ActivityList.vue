@@ -7,6 +7,7 @@
       class="elevation-1"
     >
       <template v-slot:items="props">
+        <td>{{ props.index + 1 }}</td>
         <td>{{ props.item.activity }}</td>
         <td>{{ props.item.participants }}</td>
         <td>{{ props.item.price }}</td>
@@ -24,6 +25,11 @@ import { Activity } from '@/models/Activity';
 export default class ActivityList extends Vue {
   @Prop() private value!: Activity[];
   private headers = [
+    {
+      text: '#',
+      sortable: false,
+      value: '',
+    },
     {
       text: 'Activity',
       align: 'left',
