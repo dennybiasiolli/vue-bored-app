@@ -1,10 +1,16 @@
 <template>
-  <div>
-    <Activity
-      :value="randomActivity && randomActivity.activity"
-      @save-activity-click="saveActivity"
-    ></Activity>
-    <ActivityFilters @get-activity-click="getActivity"></ActivityFilters>
+  <v-container grid-list-md>
+    <v-layout row wrap>
+      <v-flex xs6>
+        <Activity
+          :value="randomActivity && randomActivity.activity"
+          @save-activity-click="saveActivity"
+        ></Activity>
+      </v-flex>
+      <v-flex xs6>
+        <ActivityFilters @get-activity-click="getActivity"></ActivityFilters>
+      </v-flex>
+    </v-layout>
     <v-snackbar
       :value="showSnackbar"
       @input="snackbarClose"
@@ -20,7 +26,7 @@
         Close
       </v-btn>
     </v-snackbar>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts">
