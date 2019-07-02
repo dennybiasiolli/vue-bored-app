@@ -52,6 +52,9 @@ export default new Vuex.Store({
         });
       }
     },
+    clearActivities(state) {
+      state.savedActivities = [];
+    },
   },
   actions: {
     async getActivity({ state, commit }, payload) {

@@ -21,6 +21,9 @@
         </td>
       </template>
     </v-data-table>
+    <v-btn block color="error" width="100%" @click="activityClearClick">
+      Clear all
+    </v-btn>
   </div>
 </template>
 
@@ -35,6 +38,7 @@ export default class ActivityList extends Vue {
   @Emit() private activityCkeck(activity: Activity) {
     return activity;
   }
+  @Emit() private activityClearClick() { return null; }
   private headers = [
     {
       text: '#',
