@@ -9,11 +9,13 @@ Vue.use(Vuex);
 
 export interface State {
   randomActivity?: Activity | ActivityError;
+  savedActivities: Activity[];
 }
 
 export default new Vuex.Store({
   state: {
     randomActivity: undefined,
+    savedActivities: [],
   } as State,
   mutations: {
     initializeStore(state) {
@@ -25,6 +27,21 @@ export default new Vuex.Store({
     },
     updateRandomActivity(state, randomActivity: Activity) {
       state.randomActivity = randomActivity;
+    },
+    saveActivity(state) {
+      if (!state.randomActivity || state.randomActivity.error) {
+        state.randomActivity = {
+          error: 'Unable to save this activity',
+        } as ActivityError;
+      } else if (
+        state.savedActivities.includes(state.randomActivity as Activity)
+      ) {
+        state.randomActivity = {
+          error: 'Activity already saved',
+        } as ActivityError;
+      } else {
+        state.savedActivities.push(state.randomActivity as Activity);
+      }
     },
   },
   actions: {

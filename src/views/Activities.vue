@@ -1,6 +1,9 @@
 <template>
   <div>
-    <Activity :value="randomActivity && randomActivity.activity"></Activity>
+    <Activity
+      :value="randomActivity && randomActivity.activity"
+      @save-activity-click="saveActivity"
+    ></Activity>
     <ActivityFilters @get-activity-click="getActivity"></ActivityFilters>
     <v-snackbar
       :value="showSnackbar"
@@ -44,7 +47,7 @@ import { State } from '@/store';
     }),
   },
   methods: {
-    ...mapMutations(['updateRandomActivity']),
+    ...mapMutations(['updateRandomActivity', 'saveActivity']),
     ...mapActions(['getActivity']),
   },
 })
