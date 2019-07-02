@@ -34,7 +34,8 @@ export default new Vuex.Store({
           error: 'Unable to save this activity',
         } as ActivityError;
       } else if (
-        state.savedActivities.includes(state.randomActivity as Activity)
+        state.savedActivities.map((a) => a.key)
+          .includes((state.randomActivity as Activity).key)
       ) {
         state.randomActivity = {
           error: 'Activity already saved',
