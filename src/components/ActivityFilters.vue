@@ -2,15 +2,18 @@
   <div>
     <h2>Activity details:</h2>
     <v-select
+      v-model="activityType"
       :items="types"
       label="Type"
     ></v-select>
     <v-text-field
       label="Participants"
       type="number"
+      v-model="participants"
     ></v-text-field>
     <v-slider
       :tick-labels="['cheap', '', '', '', '', '', '', '', '', '', 'expensive']"
+      v-model="price"
       always-dirty
       min="0"
       max="1"
@@ -40,7 +43,16 @@ export default class ActivityFilters extends Vue {
     'social',
   ];
   @Prop() private value?: string;
-  @Emit() private getActivityClick() { };
+  private activityType: string = '';
+  private participants: number | null = null;
+  private price: number | null = null;
+  @Emit() private getActivityClick() {
+    return {
+      activityType: this.activityType,
+      participants: this.participants,
+      price: this.price,
+    };
+  }
 }
 </script>
 

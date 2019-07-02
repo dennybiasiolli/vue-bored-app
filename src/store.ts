@@ -2,12 +2,13 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import { Activity } from '@/models/Activity';
+import { ActivityError } from '@/models/ActivityError';
 import { getActivity } from '@/services';
 
 Vue.use(Vuex);
 
 export interface State {
-  randomActivity?: Activity;
+  randomActivity?: Activity | ActivityError;
 }
 
 export default new Vuex.Store({
@@ -27,8 +28,8 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    async getActivity({ state, commit }) {
-      const randomActivity = await getActivity();
+    async getActivity({ state, commit }, payload) {
+      const randomActivity = await getActivity(payload);
       commit('updateRandomActivity', randomActivity);
     },
   },

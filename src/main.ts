@@ -18,5 +18,8 @@ new Vue({
 
 store.subscribe((mutation, state) => {
   // Store the state object as a JSON string
-  localStorage.setItem('bored-app-store', JSON.stringify(state));
+  localStorage.setItem('bored-app-store', JSON.stringify({
+    ...state,
+    randomActivity: undefined,
+  }));
 });
