@@ -34,11 +34,6 @@ import { Activity } from '@/models/Activity';
 
 @Component
 export default class ActivityList extends Vue {
-  @Prop() private value!: Activity[];
-  @Emit() private activityCkeck(activity: Activity) {
-    return activity;
-  }
-  @Emit() private activityClearClick() { return null; }
   private headers = [
     {
       text: '#',
@@ -54,6 +49,11 @@ export default class ActivityList extends Vue {
     { text: 'Budget', value: 'price' },
     { text: '', value: '' },
   ];
+  @Prop() private value!: Activity[];
+  @Emit() private activityCkeck(activity: Activity) {
+    return activity;
+  }
+  @Emit() private activityClearClick() { return null; }
 }
 </script>
 

@@ -29,7 +29,7 @@ export default new Vuex.Store({
       state.randomActivity = randomActivity;
     },
     saveActivity(state) {
-      if (!state.randomActivity || state.randomActivity.error) {
+      if (!state.randomActivity || (state.randomActivity as ActivityError).error) {
         state.randomActivity = {
           error: 'Unable to save this activity',
         } as ActivityError;

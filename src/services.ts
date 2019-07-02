@@ -4,7 +4,7 @@ import { Activity } from '@/models/Activity';
 import { ActivityError } from '@/models/ActivityError';
 
 axios.interceptors.request.use((config) => {
-    config.baseURL = 'http://www.boredapi.com/api/';
+    config.baseURL = '//www.boredapi.com/api/';
     return config;
 });
 
