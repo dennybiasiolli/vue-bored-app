@@ -11,19 +11,30 @@
         <td>{{ props.item.activity }}</td>
         <td>{{ props.item.participants }}</td>
         <td>{{ props.item.price }}</td>
+        <td>
+          <v-btn flat icon
+            :color="props.item.done ? 'green' : 'grey'"
+            @click="activityCkeck(props.item)"
+          >
+            <v-icon>check_circle_outline</v-icon>
+          </v-btn>
+        </td>
       </template>
     </v-data-table>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
 
 import { Activity } from '@/models/Activity';
 
 @Component
 export default class ActivityList extends Vue {
   @Prop() private value!: Activity[];
+  @Emit() private activityCkeck(activity: Activity) {
+    return activity;
+  }
   private headers = [
     {
       text: '#',
@@ -37,6 +48,7 @@ export default class ActivityList extends Vue {
     },
     { text: 'Participants', value: 'participants' },
     { text: 'Budget', value: 'price' },
+    { text: '', value: '' },
   ];
 }
 </script>

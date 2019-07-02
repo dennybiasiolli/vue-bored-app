@@ -6,4 +6,5 @@ export interface Activity {
     price: number;
     link: string;
     key: string;
+    done?: boolean;
 }

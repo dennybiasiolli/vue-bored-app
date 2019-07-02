@@ -43,6 +43,15 @@ export default new Vuex.Store({
         state.savedActivities.push(state.randomActivity as Activity);
       }
     },
+    checkActivity(state, activity: Activity) {
+      const i = state.savedActivities.findIndex((a) => a === activity);
+      if (i >= 0) {
+        Vue.set(state.savedActivities, i, {
+          ...state.savedActivities[i],
+          done: !state.savedActivities[i].done,
+        });
+      }
+    },
   },
   actions: {
     async getActivity({ state, commit }, payload) {

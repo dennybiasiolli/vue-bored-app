@@ -1,12 +1,12 @@
 <template>
   <div>
-    <ActivityList :value="savedActivities"></ActivityList>
+    <ActivityList :value="savedActivities" @activity-ckeck="checkActivity"></ActivityList>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 import ActivityList from '@/components/ActivityList.vue';
 
@@ -16,6 +16,9 @@ import ActivityList from '@/components/ActivityList.vue';
   },
   computed: {
     ...mapState(['savedActivities']),
+  },
+  methods: {
+    ...mapMutations(['checkActivity']),
   },
 })
 export default class MyList extends Vue {}
